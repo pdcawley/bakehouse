@@ -4,3 +4,4 @@
 
 appschema 2016-07-22T20:29:12Z Piers Cawley <pdcawley@bofh.org.uk> # Add schema for all bakehouse objects
 initial [appschema] 2016-07-22T20:39:49Z Piers Cawley <pdcawley@bofh.org.uk> # Imports schema from unstructured hacking
+sampledata [appschema initial] 2016-07-22T21:26:30Z Piers Cawley <pdcawley@bofh.org.uk> # Add some sample data

@@ -8,3 +8,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Initial import of the hacked schema
 - Production list generation
 - Costing breakdowns per product
+- Sample data
