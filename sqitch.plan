@@ -2,3 +2,4 @@
 %project=bakehouse
 %uri=https://github.com/pdcawley/bakehouse
 
+appschema 2016-07-22T20:29:12Z Piers Cawley <pdcawley@bofh.org.uk> # Add schema for all bakehouse objects
