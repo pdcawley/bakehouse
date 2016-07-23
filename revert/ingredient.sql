@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE ingredient;
+DROP TABLE bakehouse.ingredient;
 
 COMMIT;
