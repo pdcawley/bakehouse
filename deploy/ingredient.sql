@@ -6,7 +6,7 @@ BEGIN;
 SET search_path = bakehouse, pg_catalog;
 
 CREATE TABLE ingredient (
-  name text not null,
+  ingredient text not null,
   type text,
   pack_size numeric,
   unit text,
@@ -15,6 +15,6 @@ CREATE TABLE ingredient (
   CONSTRAINT ingredient_pack_quanity_check CHECK (pack_size > 0::numeric)
 );
 
-ALTER TABLE ONLY ingredient ADD CONSTRAINT ingredient_pkey  PRIMARY KEY(name, datestamp);
+ALTER TABLE ONLY ingredient ADD CONSTRAINT ingredient_pkey  PRIMARY KEY(ingredient, datestamp);
 
 COMMIT;

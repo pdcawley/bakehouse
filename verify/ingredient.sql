@@ -2,7 +2,7 @@
 
 BEGIN;
 
-SELECT name, type, pack_size, unit, price, datestamp FROM bakehouse.ingredient;
+SELECT ingredient, type, pack_size, unit, price, datestamp FROM bakehouse.ingredient;
 
 
 ROLLBACK;
