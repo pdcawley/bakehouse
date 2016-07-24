@@ -35,6 +35,6 @@ WHERE name = 'Test Straight Dough'
 
 SELECT 1/COUNT(*) FROM unit_cost
 WHERE name = 'Test Straight White'
-  AND round(cost, 2) = round((0.800 * 1.289)::numeric, 2);
+  AND round(cost, 2) = round(1.289::numeric, 2);
 
 ROLLBACK;

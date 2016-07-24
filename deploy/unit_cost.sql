@@ -41,11 +41,7 @@ UNION ALL
     JOIN reduced i ON ri.ingredient = i.name
 )
 SELECT name,
-       SUM(cost / total_amount)
-     * COALESCE((SELECT scale_weight * pieces
-                 FROM bakehouse.recipe
-                 WHERE recipe.recipe = blah.name)
-               , 1) AS cost
+       SUM(cost / total_amount) AS cost
   FROM (SELECT r.name,
                sum(r.amount) * max(i.cost) AS cost,
                r.total_amount
