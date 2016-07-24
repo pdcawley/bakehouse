@@ -6,6 +6,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Sqitch management
 - Initial import of the hacked schema
-- Production list generation
 - Costing breakdowns per product
 - Sample data
