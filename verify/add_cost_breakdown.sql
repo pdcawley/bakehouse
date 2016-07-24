@@ -1,4 +1,4 @@
--- Verify bakehouse:initial on pg
+-- Verify bakehouse:add_cost_breakdown on pg
 
 BEGIN;
 

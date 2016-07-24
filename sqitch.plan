@@ -3,5 +3,8 @@
 %uri=https://github.com/pdcawley/bakehouse
 
 appschema 2016-07-22T20:29:12Z Piers Cawley <pdcawley@bofh.org.uk> # Add schema for all bakehouse objects
-initial [appschema] 2016-07-22T20:39:49Z Piers Cawley <pdcawley@bofh.org.uk> # Imports schema from unstructured hacking
-sampledata [appschema initial] 2016-07-22T21:26:30Z Piers Cawley <pdcawley@bofh.org.uk> # Add some sample data
+ingredient [appschema] 2016-07-23T19:45:01Z Piers Cawley <pdcawley@bofh.org.uk> # Imports schema from unstructured hacking
+basic-data-tables [ingredient] 2016-07-23T20:39:51Z Piers Cawley <pdcawley@bofh.org.uk> # Add tables to support baking formulae
+sampledata [basic-data-tables ingredient] 2016-07-23T21:18:40Z Piers Cawley <pdcawley@bofh.org.uk> # Add some sample data
+unit_cost [basic-data-tables ingredient] 2016-07-23T21:42:52Z Piers Cawley <pdcawley@bofh.org.uk> # Add a unit_cost view
+add_cost_breakdown [basic-data-tables unit_cost] 2016-07-24T06:47:41Z Piers Cawley <pdcawley@bofh.org.uk> # Add a cost_breakdown table
