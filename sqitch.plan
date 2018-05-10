@@ -8,3 +8,5 @@ basic-data-tables [ingredient] 2016-07-23T20:39:51Z Piers Cawley <pdcawley@bofh.
 sampledata [basic-data-tables ingredient] 2016-07-23T21:18:40Z Piers Cawley <pdcawley@bofh.org.uk> # Add some sample data
 unit_cost [basic-data-tables ingredient] 2016-07-23T21:42:52Z Piers Cawley <pdcawley@bofh.org.uk> # Add a unit_cost view
 add_cost_breakdown [basic-data-tables unit_cost] 2016-07-24T06:47:41Z Piers Cawley <pdcawley@bofh.org.uk> # Add a cost_breakdown table
+@wrong-cost-breakdown 2018-05-10T17:15:18Z Piers Cawley <pdcawley@bofh.org.uk> # cost_breakdown works wrong. Adding a tag so I can rework it.
+recipe-weight 2018-05-10T15:52:15Z Piers Cawley <pdcawley@bofh.org.uk> # Add a recipe weight view\n\nTwo columns, recipe which is the recipe name, and weight, which is the total\nweight of the recipe. Used by material_cost.
