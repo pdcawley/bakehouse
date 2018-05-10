@@ -12,3 +12,4 @@ add_cost_breakdown [basic-data-tables unit_cost] 2016-07-24T06:47:41Z Piers Cawl
 recipe-weight 2018-05-10T15:52:15Z Piers Cawley <pdcawley@bofh.org.uk> # Add a recipe weight view\n\nTwo columns, recipe which is the recipe name, and weight, which is the total\nweight of the recipe. Used by material_cost.
 material_cost 2018-05-10T15:07:31Z Piers Cawley <pdcawley@bofh.org.uk> # per_unit is broken, so we replace it with a material_cost view that works\n\nInstead of starting at ingredients and working up to products, we start from\na product and work out what it's made from at the ingredient level, then we \nwork out the total ingredient cost per item.
 add_cost_breakdown [add_cost_breakdown@wrong-cost-breakdown material_cost] 2018-05-10T17:15:47Z Piers Cawley <pdcawley@bofh.org.uk> # Make cost_breakdown work based on material_cost, not per_unit
+remove_unit_cost [unit_cost] 2018-05-10T18:36:25Z Piers Cawley <pdcawley@bofh.org.uk> # Eliminate per-unit
