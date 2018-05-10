@@ -8,20 +8,20 @@ SET search_path = bakehouse, pg_catalog;
 
 -- Set up some constants
 
-CREATE OR REPLACE FUNCTION hourly_rate() RETURNS numeric
+CREATE FUNCTION hourly_rate() RETURNS numeric
   AS $$ SELECT 15.00::numeric; $$
   LANGUAGE SQL
   IMMUTABLE;
 
-CREATE OR REPLACE FUNCTION transport_allowance_rate() RETURNS numeric
+CREATE FUNCTION transport_allowance_rate() RETURNS numeric
   AS $$ SELECT 0.1::numeric; $$
   LANGUAGE SQL
   IMMUTABLE;
 
-CREATE OR REPLACE VIEW cost_breakdown AS
+CREATE VIEW cost_breakdown AS
 WITH basic_cost AS (
  SELECT product.product AS product
-      , mc.materials_cost as ingredient
+      , pu.cost * r.scale_weight * r.pieces AS ingredient
       , ROUND(
           COALESCE( product.packaging_cost
                   , 0::numeric
@@ -41,8 +41,8 @@ WITH basic_cost AS (
         , 2
         ) AS margin
    FROM product
-     JOIN material_cost mc ON mc.product = product.product
-     JOIN recipe r    ON mc.product = r.recipe
+     JOIN unit_cost pu ON pu.name = product.product
+     JOIN recipe r    ON pu.name = r.recipe
 ),
 wholesale AS (
 SELECT bc_1.product
@@ -64,17 +64,17 @@ SELECT bc_1.product
      JOIN wholesale ON wholesale.product = bc_1.product
 )
 SELECT price.product
-     , ROUND(price.materials::numeric, 2) AS materials
+     , ROUND(price.materials, 2) AS materials
      , ROUND(bc.labour, 2)       AS labour
-     , ROUND(price.transport::numeric, 2) AS transport
-     , ROUND(price.wholesale::numeric, 2) AS wholesale
+     , ROUND(price.transport, 2) AS transport
+     , ROUND(price.wholesale, 2) AS wholesale
      , ROUND(bc.margin * 100::numeric, 2) || '%' AS "margin (%age)"
-     , ROUND(price.retail::numeric, 2)    AS retail
-     , ROUND(price.wholesale::numeric - price.cost::numeric, 2) AS profit
-     , ROUND(((100.0::numeric * (price.retail - price.wholesale)) / price.retail)::numeric, 2)
+     , ROUND(price.retail, 2)    AS retail
+     , ROUND(price.wholesale - price.cost, 2) AS profit
+     , ROUND((100.0::numeric * (price.retail - price.wholesale)) / price.retail, 2)
        AS retail_margin
-     , ROUND(((100.0::numeric * price.materials) / price.wholesale)::numeric, 2) AS "Materials %age of wholesale"
-     , ROUND(((100.0::numeric * price.materials) / price.retail)::numeric, 2)    AS "Materials %age of retail"
+     , ROUND((100.0::numeric * price.materials) / price.wholesale, 2) AS "Materials %age of wholesale"
+     , ROUND((100.0::numeric * price.materials) / price.retail, 2)    AS "Materials %age of retail"
   FROM price
     JOIN basic_cost bc ON price.product = bc.product;
 
