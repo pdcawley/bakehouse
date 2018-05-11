@@ -13,3 +13,4 @@ recipe-weight 2018-05-10T15:52:15Z Piers Cawley <pdcawley@bofh.org.uk> # Add a r
 material_cost 2018-05-10T15:07:31Z Piers Cawley <pdcawley@bofh.org.uk> # per_unit is broken, so we replace it with a material_cost view that works\n\nInstead of starting at ingredients and working up to products, we start from\na product and work out what it's made from at the ingredient level, then we \nwork out the total ingredient cost per item.
 add_cost_breakdown [add_cost_breakdown@wrong-cost-breakdown material_cost] 2018-05-10T17:15:47Z Piers Cawley <pdcawley@bofh.org.uk> # Make cost_breakdown work based on material_cost, not per_unit
 remove_unit_cost [unit_cost] 2018-05-10T18:36:25Z Piers Cawley <pdcawley@bofh.org.uk> # Eliminate per-unit
+recipe-timings 2018-05-11T05:01:38Z Piers Cawley <pdcawley@bofh.org.uk> # Add a rest/bake time column to recipe
