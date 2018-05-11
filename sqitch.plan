@@ -14,3 +14,4 @@ material_cost 2018-05-10T15:07:31Z Piers Cawley <pdcawley@bofh.org.uk> # per_uni
 add_cost_breakdown [add_cost_breakdown@wrong-cost-breakdown material_cost] 2018-05-10T17:15:47Z Piers Cawley <pdcawley@bofh.org.uk> # Make cost_breakdown work based on material_cost, not per_unit
 remove_unit_cost [unit_cost] 2018-05-10T18:36:25Z Piers Cawley <pdcawley@bofh.org.uk> # Eliminate per-unit
 recipe-timings 2018-05-11T05:01:38Z Piers Cawley <pdcawley@bofh.org.uk> # Add a rest/bake time column to recipe
+production-order [basic-data-tables] 2018-05-11T05:58:00Z Piers Cawley <pdcawley@bofh.org.uk> # Add a production_order table\n\nThis maps products to the amount ordered, so we can work out how much \nto make. Long term we'll need to support overlapping dates and (possibly)\nclient tracking, but until I've thought properly about how we're going to\ndo that, I shall keep this table simple.
