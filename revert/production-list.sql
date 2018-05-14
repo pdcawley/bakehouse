@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP VIEW IF EXISTS production_list;
+DROP VIEW IF EXISTS bakehouse.production_list;
 
 COMMIT;

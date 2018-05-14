@@ -43,7 +43,7 @@ That's not all that I should be able to do with the data though, so this is wher
 
 ***  TODO Add =supplier= column to =ingredient=
 
-*** NEXT Use =ingredient.datestamp= in views
+*** DONE Use =ingredient.datestamp= in views
     - Add =(ingredient,datestamp)= as the ingredient primary key
     - Fix =material_cost= to use the most recent ingredient price
 
