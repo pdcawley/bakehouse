@@ -11,7 +11,7 @@ That's not all that I should be able to do with the data though, so this is wher
 * TODO Stock control
   As well as tracking ingredient costs, we should track stock levels. It never hurts to have something going "Hang on, there's only one more sack of that left in the flour storage area, best order some more.
 
-* PROJECT History
+* PROJECT History [0%]
   Right now the schema is built around prepping for an isolated single bake. In the long term, as I ramp up production levels, this isn't going to fly -- some of the products have a two or even three day lead time, so the work for a given day can potential involve baking, mixing pre-ferments and shaping up loaves to be baked the next day. In other words, work from three essentially different production orders.
 
 ** TODO Reports
@@ -36,9 +36,16 @@ That's not all that I should be able to do with the data though, so this is wher
 ** TODO Price history
    Ingredients should have a price and a date at which they were bought at that price. Costings calculations should use the most recent price.
 
-** TODO Supplier tracking
+** NEXT Supplier tracking
    Ingredients should be labeled with a supplier -- we have to track that anyway, so the info might as well live in the database. It's probably worth adding a =batch_info= field or some such as well in case of recalls etc.
-   
+
+***  TODO Add =supplier= table
+
+***  TODO Add =supplier= column to =ingredient=
+
+*** NEXT Use =ingredient.datestamp= in views
+    - Add =(ingredient,datestamp)= as the ingredient primary key
+    - Fix =material_cost= to use the most recent ingredient price
 
 * SOMEDAY Web/Alexa interface
   At the moment, I tend to copy bits of the production list onto a bit of paper when I mix stuff. This works, but it's not ideal. A raspberry pi and a small screen by the weighing station with info on what's to be done next would be very handy. Or an Alexa skill along the same lines.
