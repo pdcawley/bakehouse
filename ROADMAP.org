@@ -1,0 +1,44 @@
+#+TODO: SOMEDAY PROJECT TODO NEXT | DONE
+#+TODO: REPORT BUG | FIXED
+#+TODO: | CANCELED
+
+The Bakehouse database is what I use for managing my bakes at the Loafery. Initially it was used for formula scaling (given these formulae for products and intermediate sponges and doughs, what do I need to do to make A dozen large and two dozen small loaves of white, and the same of malthouse brown?), but it also works out my costings for me (if the ingredients cost this much, and I can make this many products in an hour at an hourly rate of £10, and I want a margin of X%, what should I be charging for the product?)
+That's not all that I should be able to do with the data though, so this is where I keep track of other possible features that I want to add.
+
+* TODO Scheduling
+  We know timings for bulk ferments and proving, and we know how much oven space we have. It should be possible to take that and work out when to do what
+
+* TODO Stock control
+  As well as tracking ingredient costs, we should track stock levels. It never hurts to have something going "Hang on, there's only one more sack of that left in the flour storage area, best order some more.
+
+* PROJECT History
+  Right now the schema is built around prepping for an isolated single bake. In the long term, as I ramp up production levels, this isn't going to fly -- some of the products have a two or even three day lead time, so the work for a given day can potential involve baking, mixing pre-ferments and shaping up loaves to be baked the next day. In other words, work from three essentially different production orders.
+
+** TODO Reports
+   It would be nice to produce a report of what got done on a given day to inject into my daybook.org file. I believe it's possible to do something with org-babel to run a query from the org file. To investigate.
+
+** TODO Add timestamps to orders
+   The lines in the order book should know when the order is due. At a bare minimum this is necessary for scheduling, but it also lets the order table be a record of historic orders.
+   - Make the timestamp part of the primary key
+
+** TODO Tag orders
+   It'd be handy to be able to tag orders so once the bake is done and the bread is ready for packing and distribution, I know how to fill my trays and label any bags. Something like:
+
+   | product          | quantity | distributor | label | Due       |
+   |------------------+----------+-------------+-------+-----------|
+   | Large White Wild |        1 | Scrooby     | Jim   | Wednesday |
+   | Large White Wild |        1 | Scrooby     | Matt  | Wednesday |
+   | Small Seedy      |        1 | Scrooby     | Fred  | Wednesday |
+   | Large White Tin  |       10 | Deli        |       | Thursday  |
+   | Large Seedy Tin  |        8 | Deli        |       | Thursday  |
+   | ...              |      ... | ...         | ...   | ...       |
+
+** TODO Price history
+   Ingredients should have a price and a date at which they were bought at that price. Costings calculations should use the most recent price.
+
+** TODO Supplier tracking
+   Ingredients should be labeled with a supplier -- we have to track that anyway, so the info might as well live in the database. It's probably worth adding a =batch_info= field or some such as well in case of recalls etc.
+   
+
+* SOMEDAY Web/Alexa interface
+  At the moment, I tend to copy bits of the production list onto a bit of paper when I mix stuff. This works, but it's not ideal. A raspberry pi and a small screen by the weighing station with info on what's to be done next would be very handy. Or an Alexa skill along the same lines.
