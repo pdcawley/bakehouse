@@ -19,3 +19,4 @@ production-list [recipe-weight production-order] 2018-05-11T06:26:53Z Piers Cawl
 add-bake-details-to-product [basic-data-tables] 2018-05-11T07:39:15Z Piers Cawley <pdcawley@bofh.org.uk> # Add bake time and temperature to our product
 fix-ingredient-index [ingredient] 2018-05-14T12:11:24Z Piers Cawley <pdcawley@bofh.org.uk> # Add a primary key to the ingredient table
 make-cost-breakdown-use-current-price 2018-05-14T12:24:21Z Piers Cawley <pdcawley@bofh.org.uk> # Make the cost_breakdown view use the current price
+@timeless 2018-08-16T09:00:13Z Piers Cawley <pdcawley@bofh.org.uk> # This is a working DB, so long as we don't worry about time or overlapping bake/mix days.
