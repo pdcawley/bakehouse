@@ -23,3 +23,6 @@ make-cost-breakdown-use-current-price 2018-05-14T12:24:21Z Piers Cawley <pdcawle
 production-order [production-order@timeless] 2018-08-16T09:17:21Z Piers Cawley <pdcawley@bofh.org.uk> # Add tags and dates to the production_order
 production-list [production-list@timeless] 2018-08-16T09:19:30Z Piers Cawley <pdcawley@bofh.org.uk> # Make more robust to changes in production_order
 bake-days 2018-08-16T11:15:39Z Piers Cawley <pdcawley@bofh.org.uk> # Add knowledge of our bake days to the database
+@orders-tagged-and-dated 2018-08-16T17:52:39Z Piers Cawley <pdcawley@bofh.org.uk> # Production orders hare tagged and dated
+production-list [production-list@orders-tagged-and-dated bake-days] 2018-08-16T17:53:33Z Piers Cawley <pdcawley@bofh.org.uk> # Work with time
+production-order [production-order@orders-tagged-and-dated bake-days] 2018-08-16T19:27:53Z Piers Cawley <pdcawley@bofh.org.uk> # Add add a sensible default to production-order.due_date

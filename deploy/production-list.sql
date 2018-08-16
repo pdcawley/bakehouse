@@ -8,16 +8,25 @@ SET search_path = bakehouse, pg_catalog;
 
 CREATE OR REPLACE VIEW production_list AS
 WITH RECURSIVE
-    po(product, quantity) AS
-      ( SELECT product, sum(quantity)
+    po(product, quantity, due_date) AS
+      ( SELECT product, sum(quantity), due_date
           FROM production_order
-          GROUP BY product )
-  , job(rank, recipe, ingredient, quantity) AS
+          GROUP BY product, due_date )
+  , r(recipe, "type", pieces, scale_weight, rest, rest_days) AS
+    ( SELECT recipe
+           , "type"
+           , pieces
+           , scale_weight
+           , rest
+           , date_trunc('day', justify_interval(upper(rest)))
+       FROM recipe )
+  , job(rank, recipe, ingredient, quantity, work_date) AS
        ( SELECT ''::text AS text,
                 r.recipe,
                 ri.ingredient,
-                (po.quantity / r.pieces)::numeric * ri.amount
-          FROM recipe r
+                (po.quantity / r.pieces)::numeric * ri.amount,
+                po.due_date
+          FROM r
             JOIN recipe_item ri ON r.recipe::text = ri.recipe::text
             JOIN po ON r.recipe::text = po.product::text
          WHERE r.type::text = 'product'::text AND po.quantity > 0
@@ -25,14 +34,17 @@ WITH RECURSIVE
          SELECT job_1.recipe,
                 job_1.ingredient,
                 ri.ingredient,
-                job_1.quantity / rw.total * ri.amount
+                job_1.quantity / rw.total * ri.amount,
+                (job_1.work_date - r.rest_days)::date
            FROM job job_1
              JOIN recipe_item ri ON job_1.ingredient::text = ri.recipe::text
-             JOIN recipe_weight rw ON job_1.ingredient::text = rw.recipe::text )
+             JOIN recipe_weight rw ON job_1.ingredient::text = rw.recipe::text
+             JOIN r ON job_1.ingredient::text = r.recipe::text)
  SELECT job.recipe,
         job.ingredient,
-        sum(job.quantity)::numeric(6,3) AS quantity
+        sum(job.quantity)::numeric(6,3) AS quantity,
+        job.work_date
    FROM job
-  GROUP BY job.recipe, job.ingredient;
+  GROUP BY job.recipe, job.ingredient, job.work_date;
 
 COMMIT;

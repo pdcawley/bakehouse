@@ -6,10 +6,7 @@ BEGIN;
 
 SET search_path = bakehouse, pg_catalog;
 
-DROP VIEW production_list;
-
-
-CREATE VIEW production_list AS
+CREATE OR REPLACE VIEW production_list AS
 WITH RECURSIVE
     po(product, quantity) AS
       ( SELECT product, sum(quantity)
@@ -32,9 +29,9 @@ WITH RECURSIVE
            FROM job job_1
              JOIN recipe_item ri ON job_1.ingredient::text = ri.recipe::text
              JOIN recipe_weight rw ON job_1.ingredient::text = rw.recipe::text )
- SELECT job.recipe
-      , job.ingredient
-      , sum(job.quantity)::numeric(6,3) AS quantity
+ SELECT job.recipe,
+        job.ingredient,
+        sum(job.quantity)::numeric(6,3) AS quantity
    FROM job
   GROUP BY job.recipe, job.ingredient;
 
