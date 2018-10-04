@@ -26,3 +26,5 @@ bake-days 2018-08-16T11:15:39Z Piers Cawley <pdcawley@bofh.org.uk> # Add knowled
 @orders-tagged-and-dated 2018-08-16T17:52:39Z Piers Cawley <pdcawley@bofh.org.uk> # Production orders hare tagged and dated
 production-list [production-list@orders-tagged-and-dated bake-days] 2018-08-16T17:53:33Z Piers Cawley <pdcawley@bofh.org.uk> # Work with time
 production-order [production-order@orders-tagged-and-dated bake-days] 2018-08-16T19:27:53Z Piers Cawley <pdcawley@bofh.org.uk> # Add add a sensible default to production-order.due_date
+@unranked 2018-10-04T10:39:04Z Piers Cawley <pdcawley@bofh.org.uk> # The "rank" column in production-list\\'s query isn\\'t good
+production-list [production-list@unranked] 2018-10-04T10:40:12Z Piers Cawley <pdcawley@bofh.org.uk> # Add a meaningful rank to fix the production-list query

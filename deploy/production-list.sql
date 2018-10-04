@@ -21,7 +21,7 @@ WITH RECURSIVE
            , date_trunc('day', justify_interval(upper(rest)))
        FROM recipe )
   , job(rank, recipe, ingredient, quantity, work_date) AS
-       ( SELECT ''::text AS text,
+       ( SELECT 0,
                 r.recipe,
                 ri.ingredient,
                 (po.quantity / r.pieces)::numeric * ri.amount,
@@ -31,7 +31,7 @@ WITH RECURSIVE
             JOIN po ON r.recipe::text = po.product::text
          WHERE r.type::text = 'product'::text AND po.quantity > 0
         UNION
-         SELECT job_1.recipe,
+         SELECT job_1.rank + 1,
                 job_1.ingredient,
                 ri.ingredient,
                 job_1.quantity / rw.total * ri.amount,
