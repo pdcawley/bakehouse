@@ -12,12 +12,10 @@ WITH RECURSIVE
       ( SELECT product, sum(quantity), due_date
           FROM production_order
           GROUP BY product, due_date )
-  , r(recipe, "type", pieces, scale_weight, rest, rest_days) AS
+  , r(recipe, "type", pieces, rest_days) AS
     ( SELECT recipe
            , "type"
            , pieces
-           , scale_weight
-           , rest
            , date_trunc('day', justify_interval(upper(rest)))
        FROM recipe )
   , job(rank, recipe, ingredient, quantity, work_date) AS
