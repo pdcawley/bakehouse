@@ -12,14 +12,16 @@ WITH RECURSIVE
       ( SELECT product, sum(quantity), due_date
           FROM production_order
           GROUP BY product, due_date )
-  , r(recipe, "type", pieces, rest_days) AS
+  , r(recipe, "type", pieces, scale_weight, rest, rest_days) AS
     ( SELECT recipe
            , "type"
            , pieces
+           , scale_weight
+           , rest
            , date_trunc('day', justify_interval(upper(rest)))
        FROM recipe )
   , job(rank, recipe, ingredient, quantity, work_date) AS
-       ( SELECT 0,
+       ( SELECT ''::text AS text,
                 r.recipe,
                 ri.ingredient,
                 (po.quantity / r.pieces)::numeric * ri.amount,
@@ -29,7 +31,7 @@ WITH RECURSIVE
             JOIN po ON r.recipe::text = po.product::text
          WHERE r.type::text = 'product'::text AND po.quantity > 0
         UNION
-         SELECT job_1.rank + 1,
+         SELECT job_1.recipe,
                 job_1.ingredient,
                 ri.ingredient,
                 job_1.quantity / rw.total * ri.amount,
