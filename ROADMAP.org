@@ -11,13 +11,13 @@ That's not all that I should be able to do with the data though, so this is wher
 * TODO Stock control
   As well as tracking ingredient costs, we should track stock levels. It never hurts to have something going "Hang on, there's only one more sack of that left in the flour storage area, best order some more.
 
-* PROJECT History [0%]
+* PROJECT History [20%]
   Right now the schema is built around prepping for an isolated single bake. In the long term, as I ramp up production levels, this isn't going to fly -- some of the products have a two or even three day lead time, so the work for a given day can potential involve baking, mixing pre-ferments and shaping up loaves to be baked the next day. In other words, work from three essentially different production orders.
 
 ** TODO Reports
    It would be nice to produce a report of what got done on a given day to inject into my daybook.org file. I believe it's possible to do something with org-babel to run a query from the org file. To investigate.
 
-** TODO Add timestamps to orders
+** DONE Add timestamps to orders
    The lines in the order book should know when the order is due. At a bare minimum this is necessary for scheduling, but it also lets the order table be a record of historic orders.
    - Make the timestamp part of the primary key
 
@@ -47,5 +47,22 @@ That's not all that I should be able to do with the data though, so this is wher
     - Add =(ingredient,datestamp)= as the ingredient primary key
     - Fix =material_cost= to use the most recent ingredient price
 
+* PROJECT CRM [%]
+  Keep track of regular customers, contact them at appropriate times and through appropriate channels. Let them set up standing (and maybe template) orders.
+
+** NEXT Standing orders
+   Capture standing orders. Should have the customer, product, bake day and quantity and a period over which the order is valid. We need to retain 'old' and cancelled orders so as to make 'historic' queries accurate (as we do with other queries like production_list). Live standing orders should feed into the production_list.
+
+** TODO Customer table
+   Holds customer details. Contact method, usual order days, that sort of thing. Also, some metadata about how we got that contact and when.
+
+** TODO Customer 'mailouts'
+   Automatically remind regular (and interested) customers when there's a bake day coming up and solicit orders. There MUST be a way for them to opt out.
+
+** TODO Check data rules on holding a customer database
+   IMPORTANT!
+
+* NEXT Allergens
+  We need to tell the customer what allergens are in a loaf. If we tie this to the ingredients then we can have a function that returns all the allergens associated with a recipe or product.
 * SOMEDAY Web/Alexa interface
   At the moment, I tend to copy bits of the production list onto a bit of paper when I mix stuff. This works, but it's not ideal. A raspberry pi and a small screen by the weighing station with info on what's to be done next would be very handy. Or an Alexa skill along the same lines.
