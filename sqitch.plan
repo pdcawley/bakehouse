@@ -31,3 +31,4 @@ production-list [production-list@unranked] 2018-10-04T10:40:12Z Piers Cawley <pd
 constrain-recipe-ingredients 2018-10-22T15:33:17Z Piers Cawley <pdcawley@bofh.org.uk> # Recipe ingredients must be found in either ingredient or recipe
 @dup-weight-breakage 2018-11-19T16:04:20Z Piers Cawley <pdcawley@bofh.org.uk> # It turns out production-list doesn't work if two products \nhave the same weight of the same ingredient at the same rank.\n\nWe need to remember the product as well as the rank of a mix.
 production-list [production-list@dup-weight-breakage] 2018-11-19T16:06:09Z Piers Cawley <pdcawley@bofh.org.uk> # Fix the production-list to work when weight/recipe/rank collides
+allergen-tracking 2019-03-25T12:37:56Z Piers Cawley <pdcawley@bofh.org.uk> # Track allergens associated with an ingredient for labeling
